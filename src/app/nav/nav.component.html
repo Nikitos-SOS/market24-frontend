@@ -1,0 +1,103 @@
+<header class="p-3  text-dark">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a routerLink="/main" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap">Market 24</use></svg> -->
+        <!-- <svg class="bi me-2" width="100" height="101"></svg> -->
+        <img class="logo" src="../../assets/imgs/Logo.png" width="100px" height="101px">
+        <h1 class="title">Siberia</h1>
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="margin-left: auto;margin-right: auto; gap: 20px;">
+        <li><a class="nav-link px-2  active" routerLink="/main" routerLinkActive="active" >Главная</a></li>
+        <li><a  class="nav-link px-2 "  routerLink="/gallery" routerLinkActive="active">Галерея</a></li>
+        <li><a href="#" class="nav-link px-2 " routerLink="/about_us" routerLinkActive="active">О нас</a></li>
+      </ul>
+
+
+      <div class="text-end" [ngSwitch]="this.role">
+
+        <ng-container *ngSwitchCase="'admin'">
+          <button type="button" class="button login__btn"style="width:125px" >Изменить</button>
+          <button type="button" class="button signup__btn" style="width:75px" (click)="logout()">Выйти</button>
+        </ng-container>
+        <ng-container *ngSwitchCase="'user'">
+          <button type="button" class="button login__btn" style="width:125px">Аккаунт</button>
+          <button type="button" class="button signup__btn" style="width:75px" (click)="logout()">Выйти</button>
+
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <button type="button" class="button signup__btn" style="width:125px" data-bs-toggle="modal" data-bs-target="#signModal">Регистрация</button>
+          <button type="button" class="button login__btn" style="width:75px" data-bs-toggle="modal" data-bs-target="#loginModal">Войти</button>
+
+        </ng-container>
+
+       </div>
+       <!-- {{this.user.role}} -->
+       {{roleShow()}}
+    </div>
+  </div>
+</header>
+
+<!-- Login form -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Log IN</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Username" required>
+         </div>
+         <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
+         </div>
+         <div class="modal-footer">
+            <button type="button" id="login-form" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary" >Log in</button>
+         </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signing form -->
+<div class="modal fade" id="signModal" tabindex="-1" aria-labelledby="signModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signinModalLabel">Sign IN</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #signinForm="ngForm" (ngSubmit)="signin(signinForm)">
+          <div class="form-group">
+            <label for="userName">Username</label>
+            <input type="text" ngModel name="userName" class="form-control" id="userName" placeholder="Username" required>
+         </div>
+         <div class="form-group">
+          <label for="mail">Email</label>
+          <input type="mail" ngModel name="mail" class="form-control" id="mail" placeholder="Mail" required>
+       </div>
+         <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
+         </div>
+         <div class="modal-footer">
+            <button type="button" id="signing-form" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button [disabled]="signinForm.invalid" type="submit" class="btn btn-primary" >Sign in</button>
+         </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
