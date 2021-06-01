@@ -1,0 +1,13 @@
+.inner{
+  width: 100%;
+  display: flex;
+
+  /* justify-content: space-between;/ */
+}
+.content{
+  margin-left: 5%;
+}
+.comments{
+  justify-content: center;
+  margin: auto;
+}
