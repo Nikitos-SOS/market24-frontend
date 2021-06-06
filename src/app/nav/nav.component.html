@@ -15,13 +15,13 @@
       </ul>
 
 
-      <div class="text-end" [ngSwitch]="this.role">
+      <div class="text-end" [ngSwitch]="checkRole()">
 
-        <ng-container *ngSwitchCase="'admin'">
+        <ng-container *ngSwitchCase="'ROLE_ADMIN'">
           <button type="button" class="button login__btn"style="width:125px" >Изменить</button>
           <button type="button" class="button signup__btn" style="width:75px" (click)="logout()">Выйти</button>
         </ng-container>
-        <ng-container *ngSwitchCase="'user'">
+        <ng-container *ngSwitchCase="'ROLE_USER'">
           <button type="button" class="button login__btn" style="width:125px">Аккаунт</button>
           <button type="button" class="button signup__btn" style="width:75px" (click)="logout()">Выйти</button>
 
@@ -77,22 +77,22 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form #signinForm="ngForm" (ngSubmit)="signin(signinForm)">
+        <form #signinForm="ngForm" (ngSubmit)="signup(signinForm, successForm)">
           <div class="form-group">
             <label for="userName">Username</label>
-            <input type="text" ngModel name="userName" class="form-control" id="userName" placeholder="Username" required>
+            <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Username" required>
          </div>
-         <div class="form-group">
+         <!-- <div class="form-group">
           <label for="mail">Email</label>
           <input type="mail" ngModel name="mail" class="form-control" id="mail" placeholder="Mail" required>
-       </div>
+       </div> -->
          <div class="form-group">
             <label for="password">Password</label>
             <input type="password" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
          </div>
          <div class="modal-footer">
             <button type="button" id="signing-form" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button [disabled]="signinForm.invalid" type="submit" class="btn btn-primary" >Sign in</button>
+            <button [disabled]="signinForm.invalid" type="submit" class="btn btn-primary" data-bs-target="#successModel">Sign in</button>
          </div>
 
         </form>
@@ -100,4 +100,24 @@
     </div>
   </div>
 </div>
+
+<!-- Success form -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Success</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #successForm="ngForm" >
+        User Successfully Created!
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
