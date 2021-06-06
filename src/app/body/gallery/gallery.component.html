@@ -11,7 +11,7 @@
       </form>
 
       <div class="admin-control btn-group" [ngSwitch]="this.getRole()">
-        <ng-container *ngSwitchCase = "'admin'">
+        <ng-container *ngSwitchCase = "'ROLE_ADMIN'">
           <button type="button" class="button  add_btn" data-bs-toggle="modal" data-bs-target="#addProductModal">
             Добавить
           </button>
@@ -51,7 +51,7 @@
                   Цена от {{product.price}} руб
                 </span>
                 <div class="admin-control btn-group" [ngSwitch]="this.getRole()">
-                  <ng-container *ngSwitchCase = "'admin'">
+                  <ng-container *ngSwitchCase = "'ROLE_ADMIN'">
                     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="editProductModal(product)" data-bs-toggle="modal" data-bs-target="#updateProductModal" >Edit</button>
                     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteProductModal(product)" data-bs-toggle="modal" data-bs-target="#deleteProductModal">Delete</button>
 

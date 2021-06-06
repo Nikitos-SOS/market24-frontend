@@ -4,6 +4,7 @@ import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse, JsonpClientBackend } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { checkRole } from '../../functions/checkRole';
 // import { Product } from './../../interfaces/product';
 
 @Component({
@@ -33,8 +34,9 @@ export class GalleryComponent implements OnInit {
     // this.role = localStorage.getItem('role')
   }
 
+  // tslint:disable-next-line: typedef
   getRole(){
-    return localStorage.getItem('role');
+    return checkRole();
   }
 
   public getProducts():void{
