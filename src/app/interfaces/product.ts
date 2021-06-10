@@ -6,4 +6,5 @@ export interface Product{
   imgUrl: string;
   description: string;
   rating:number;
+  seller_id: number;
 }

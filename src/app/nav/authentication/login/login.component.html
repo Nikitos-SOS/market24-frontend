@@ -1,0 +1,9 @@
+
+<div class="authenticationTypes">
+  <button  (click)="toggleAuthentication('buyer')">Я - Покупатель</button>
+  <button  (click)="toggleAuthentication('seller')">Я - Продавец</button>
+</div>
+<div class="authenticationContent" [ngSwitch]="getauthType()">
+  <app-seller-login *ngSwitchCase="'seller'"></app-seller-login>
+  <app-buyer-login *ngSwitchDefault="'buyer'"></app-buyer-login>
+</div>
