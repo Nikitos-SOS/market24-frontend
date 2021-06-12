@@ -1,3 +1,4 @@
+import { ChangePassword } from './../interfaces/changePassword';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -8,7 +9,7 @@ import { User } from '../interfaces/user';
 })
 export class UserService {
 
-  private apiServerUrl = 'http://localhost:8080/user';
+  private apiServerUrl = 'http://localhost:8080';
   private users: User[] = [];
 
   constructor(
@@ -29,14 +30,23 @@ export class UserService {
       headers: new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`),
     };
 
-    return this.http.get<any>(`${this.apiServerUrl}/all`, options);
+    return this.http.get<any>(`${this.apiServerUrl}/user/all`, options);
   }
 
   public updateUser(user: User): Observable<User>{
-    return this.http.put<User>(`${this.apiServerUrl}/update`, user);
+    return this.http.put<User>(`${this.apiServerUrl}/user/update`, user);
   }
 
   public deleteUser(userId: number): Observable<void>{
-    return this.http.delete<void>(`${this.apiServerUrl}/delete/${userId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/user/delete/${userId}`);
+  }
+
+  public getUserByUsername(username: string): Observable<User>{
+    return this.http.get<User>(`${this.apiServerUrl}/user/find/${username}`);
+  }
+
+  public changePassword(changePassword: ChangePassword): Observable<void>{
+    const options = {responseType: 'text' as 'json'};
+    return this.http.put<void>(`${this.apiServerUrl}/repassword`, changePassword, options);
   }
 }

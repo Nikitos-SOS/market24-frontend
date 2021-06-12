@@ -120,20 +120,20 @@ export class AdminPanelComponent implements OnInit {
   }
 
   public usersIsEmpty(): boolean{
-    if(this.users.length > 0){
+    if (this.users.length > 0){
       return true;
     }
     return false;
   }
 
   public sellersIsEmpty(): boolean{
-    if(this.sellers.length > 0){
+    if (this.sellers.length > 0){
       return true;
     }
     return false;
   }
 
-  public checkRole(){
-    return checkRole() === "ROLE_ADMIN";
+  public checkRole(): boolean{
+    return checkRole() === 'ROLE_ADMIN';
   }
 }

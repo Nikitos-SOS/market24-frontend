@@ -1,1 +1,91 @@
 <p>seller-panel works!</p>
+<div class="user_info_container" *ngIf="roleSeller()">
+  <div class="user_info">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Логин*: {{seller.username}}</li>
+      <li class="list-group-item">ИНН*: {{seller.inn}}</li>
+      <li class="list-group-item">Контактная информация: {{seller.contactInfo}}</li>
+      <li class="list-group-item">Количество товаров: {{seller.products.length}}</li>
+      <!-- <li class="list-group-item">Электронная почта: {{user.email}}</li> -->
+    </ul>
+    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#updateSellerModal" >Edit</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#changePasswordModal" >Изменить пароль</button>
+
+  </div>
+</div>
+
+<!-- Edit Seller Modal -->
+<div class="modal fade" id="updateSellerModal" tabindex="-1" role="dialog" aria-labelledby="userSellerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="updateSellerModalLabel">Изменить пользователя: {{seller?.username}}</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        </div>
+        <div class="modal-body">
+           <form #sellerEditForm="ngForm">
+
+              <input type="hidden" ngModel="{{seller?.username}}" name="username" class="form-control" id="username" placeholder="Username">
+
+              <input type="hidden" ngModel="{{seller?.id}}" name="id" class="form-control" id="id">
+              <input type="hidden" ngModel="{{seller?.password}}" name="password" class="form-control" id="password" >
+              <!-- <input type="hidden" ngModel="{{editSeller?.products}}" name="products" class="form-control" id="products" > -->
+
+
+                 <input type="hidden" ngModel="{{seller?.inn}}" name="inn" class="form-control" id="inn" name="inn" placeholder="1234567890">
+
+              <div class="form-group">
+                <label for="contactInfo">Контактная информация</label>
+                <!-- <input type="text" ngModel="{{editSeller?.contactInfo}}" name="email" class="form-control" id="email" name="email"  placeholder="help@gmail.com"> -->
+                <textarea type="text" ngModel="{{seller?.contactInfo}}" name="contactInfo" class="form-control" id="contactInfo" cols="30" raws="10" placeholder="Your contact info" required>
+
+                </textarea>
+              </div>
+              <div class="modal-footer">
+                 <button type="button" id="edit-product-form" data-bs-dismiss="modal" class="btn btn-secondary" >Закрыть</button>
+                 <button (click)="onUpdateSeller(sellerEditForm.value)" data-bs-dismiss="modal" class="btn btn-primary" >Сохранить</button>
+              </div>
+           </form>
+        </div>
+     </div>
+  </div>
+</div>
+
+<!--Change password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="changePasswordModalLabel">Изменить пароль: {{seller?.username}}</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        </div>
+        <div class="modal-body">
+           <form #changePasswordForm="ngForm">
+
+              <input type="hidden" ngModel="{{seller?.username}}" name="username" class="form-control" id="username" >
+
+              <div class="form-group">
+                <label for="oldPassword">Старый пароль</label>
+                <input type="password" ngModel name="oldPassword" class="form-control" id="oldPassword" >
+              </div>
+
+              <div class="form-group">
+                 <label for="newPassword">Новый пароль</label>
+                 <input type="password" ngModel name="newPassword" class="form-control" id="newPassword" >
+              </div>
+
+              <div class="form-group">
+                 <label for="reNewPassword">Новый пароль еще раз</label>
+                 <input type="password" ngModel name="reNewPassword" class="form-control" id="reNewPassword" name="reNewPassword" >
+              </div>
+              <div class="modal-footer">
+                 <button type="button" id="edit-product-form" data-bs-dismiss="modal" class="btn btn-secondary" >Закрыть</button>
+                 <button (click)="getNewPassword(changePasswordForm.value)" data-bs-dismiss="modal" class="btn btn-primary" >Сохранить</button>
+              </div>
+           </form>
+        </div>
+     </div>
+  </div>
+</div>
