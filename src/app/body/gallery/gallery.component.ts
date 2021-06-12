@@ -16,14 +16,7 @@ export class GalleryComponent implements OnInit {
   public products: Product[] = [];
   public editProduct!: Product;
   public deleteProduct!: Product;
-  role: string | null = "";
-  // router: any;
 
-
-  // public products!: Product[];
-  // public editProduct: Product | undefined;
-  // public deleteProduct: Product | undefined;
-  // productService: any;
   constructor(
     private productService: ProductService,
     private router: Router
@@ -31,15 +24,14 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit() {
     this.getProducts();
-    // this.role = localStorage.getItem('role')
+
   }
 
-  // tslint:disable-next-line: typedef
   getRole(){
     return checkRole();
   }
 
-  public getProducts():void{
+  public getProducts(): void{
     this.productService.getProducts().subscribe(
       (response: Product[])=>{
         this.products = response;
@@ -51,7 +43,7 @@ export class GalleryComponent implements OnInit {
     )
   }
 
-  public onAddProduct(addForm: NgForm):void{
+  public onAddProduct(addForm: NgForm): void{
     document.getElementById('add-product-form')?.click();
     this.productService.addProduct(addForm.value).subscribe(
       (response: Product) => {
@@ -90,10 +82,10 @@ export class GalleryComponent implements OnInit {
     )
   }
 
-  public searchProducts(key:any): void {
+  public searchProducts(key: any): void {
     console.log(key);
     let keyString = '';
-    keyString +=key.target.value
+    keyString += key.target.value;
     const results: Product[] = [];
     for (const product of this.products){
       if(product.name.toLowerCase().indexOf(keyString.toLowerCase()) !== -1){
@@ -101,7 +93,7 @@ export class GalleryComponent implements OnInit {
       }
     }
     this.products = results;
-    if(results.length ===0 || !keyString){
+    if(results.length === 0 || !keyString){
       this.getProducts();
     }
   }

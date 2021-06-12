@@ -6,4 +6,5 @@ export interface User{
   surname: string;
   phone: string;
   email: string;
+  roles: {'id': number, 'name': string}[];
 }

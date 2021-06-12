@@ -25,6 +25,9 @@ import { SellerLoginComponent } from './nav/authentication/seller-login/seller-l
 import { SignupComponent } from './nav/authentication/signup/signup.component';
 import { LoginComponent } from './nav/authentication/login/login.component';
 import { HomeComponent } from './home/home.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { UserPanelComponent } from './user-panel/user-panel.component';
+import { SellerPanelComponent } from './seller-panel/seller-panel.component';
 // import { Home } from './body/home.content/home.content.component';
 
 
@@ -44,6 +47,9 @@ import { HomeComponent } from './home/home.component';
     SellerLoginComponent,
     SignupComponent,
     LoginComponent,
+    AdminPanelComponent,
+    UserPanelComponent,
+    SellerPanelComponent,
 
     // AuthorisationComponent
   ],

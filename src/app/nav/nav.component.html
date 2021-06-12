@@ -18,16 +18,16 @@
       <div class="text-end" [ngSwitch]="this.checkRole">
 
         <ng-container *ngSwitchCase="'ROLE_ADMIN'">
-          <button type="button" class="button login__btn"style="width:125px" >Изменить</button>
+          <button type="button" class="button login__btn"style="width:125px"  routerLink="/admin" routerLinkActive="active">Изменить</button>
           <button type="button" class="button signup__btn" style="width:75px" (click)="logout()">Выйти</button>
         </ng-container>
         <ng-container *ngSwitchCase="'ROLE_USER'">
-          <button type="button" class="button login__btn" style="width:125px">Аккаунт</button>
+          <button type="button" class="button login__btn" style="width:125px" routerLink="/user" routerLinkActve="active">Аккаунт</button>
           <button type="button" class="button signup__btn" style="width:75px" (click)="logout()">Выйти</button>
 
         </ng-container>
         <ng-container *ngSwitchCase="'ROLE_SELLER'">
-          <button type="button" class="button login__btn" style="width:125px">Кабинет</button>
+          <button type="button" class="button login__btn" style="width:125px" routerLink="/seller" routerLinkActive="active">Кабинет</button>
           <button type="button" class="button signup__btn" style="width:75px" (click)="logout()">Выйти</button>
 
         </ng-container>
