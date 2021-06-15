@@ -42,7 +42,8 @@
               <h4 class="card-title">
                 {{product.name}}
               </h4>
-              <h6 class="card-city">г. Красноярск</h6>
+              <h6 class="card-city">{{product.city}}</h6>
+              <!-- <h6 class="card-seller"> {{product.seller.username}}</h6> -->
 
 
 
@@ -56,6 +57,11 @@
                     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteProductModal(product)" data-bs-toggle="modal" data-bs-target="#deleteProductModal">Delete</button>
 
                   </ng-container>
+
+                  <ng-container *ngSwitchCase = "'ROLE_USER'">
+                    <button class=" like_btn" style="background-image: url(../../../assets/imgs/Rectangle\ 120.png);" (click)="this.likeProduct(this.product!.id)">Добавить </button>
+                  </ng-container>
+
                   <!-- <ng-container *ngSwitchDefault>{{this.getRole()}}</ng-container> -->
 
                   </div>
@@ -108,8 +114,21 @@
             <label for="description">Description</label>
             <textarea type="text" ngModel name="description" class="form-control" id="description" cols="30" raws="10" placeholder="Description" required>
             </textarea>
-
          </div>
+         <div class="form-group">
+          <label for="seller">Seller id</label>
+          <input type="number" ngModel name="seller" class="form-control" id="seller" placeholder="Seller_id" required>
+        </div>
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="string" ngModel name="city" class="form-control" id="city" placeholder="City" required>
+        </div>
+
+        <div class="form-group">
+          <label for="region">Region</label>
+          <input type="string" ngModel name="region" class="form-control" id="region" placeholder="region" required>
+        </div>
+
 
          <div class="modal-footer">
             <button type="button" id="add-product-form" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -159,6 +178,20 @@
                 </textarea>
 
              </div>
+             <!-- <div class="form-group"> -->
+              <!-- <label for="seller">Seller id</label> -->
+              <input type="hidden" ngModel={{editProduct?.seller?.id}} name="seller" class="form-control" id="seller" placeholder="Seller_id" required>
+            <!-- </div> -->
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="string" ngModel={{editProduct?.city}} name="city" class="form-control" id="city" placeholder="City" required>
+            </div>
+
+            <div class="form-group">
+              <label for="region">Region</label>
+              <input type="string" ngModel={{editProduct?.region}} name="region" class="form-control" id="region" placeholder="region" required>
+            </div>
+
               <div class="modal-footer">
                  <button type="button" id="edit-product-form" data-bs-dismiss="modal" class="btn btn-secondary" >Close</button>
                  <button (click)="onUpdateProduct(editForm.value)" data-bs-dismiss="modal" class="btn btn-primary" >Save changes</button>

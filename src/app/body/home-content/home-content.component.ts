@@ -1,14 +1,14 @@
-import { ProductService } from './../../services/product.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-home-content',
+  templateUrl: './home-content.component.html',
+  styleUrls: ['./home-content.component.css']
 })
-export class MainComponent implements OnInit {
+export class HomeContentComponent implements OnInit {
   products: Product[] = [];
 
   constructor(private productService:ProductService) { }
@@ -29,5 +29,4 @@ export class MainComponent implements OnInit {
       }
     )
   }
-
 }

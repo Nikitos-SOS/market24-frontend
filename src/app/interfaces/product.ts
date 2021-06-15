@@ -1,3 +1,5 @@
+import { Seller } from "./seller";
+
 export interface Product{
   id: number;
   name: string;
@@ -5,5 +7,8 @@ export interface Product{
   price: number;
   imgUrl: string;
   description: string;
-  rating:number;
+  rating: number;
+  seller: Seller;
+  city: string;
+  region: string;
 }

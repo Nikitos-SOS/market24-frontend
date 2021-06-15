@@ -29,6 +29,7 @@
 .login__btn:hover{
   background-color: #006a4e;
   transition: 0.3s;
+  color: white;
 }
 
 .signup__btn{
@@ -39,6 +40,7 @@
 .signup__btn:hover{
   background-color: #878787;
   transition: 0.3s;
+  color: white;
 }
 
 .nav-link{

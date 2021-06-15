@@ -34,5 +34,13 @@ export class ProductService {
     return this.http.delete<void>(`${this.apiServerUrl}/product/delete/${productId}`);
   }
 
+  public findProductByUsername(username: string): Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.apiServerUrl}/product/find/seller_username/${username}`);
+  }
+
+  public getProductById(id: number): Observable<Product>{
+    return this.http.get<Product>(`${this.apiServerUrl}/product/find/${id}`);
+  }
+
 
 }

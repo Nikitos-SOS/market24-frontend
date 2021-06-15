@@ -1,10 +1,12 @@
+import { UserService } from './../../services/user.service';
 import { Router } from '@angular/router';
 import { Product } from './../../interfaces/product';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse, JsonpClientBackend } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { checkRole } from '../../functions/checkRole';
+import { checkRole, getId } from '../../functions/checkRole';
+import { User } from 'src/app/interfaces/user';
 // import { Product } from './../../interfaces/product';
 
 @Component({
@@ -16,30 +18,23 @@ export class GalleryComponent implements OnInit {
   public products: Product[] = [];
   public editProduct!: Product;
   public deleteProduct!: Product;
-  role: string | null = "";
-  // router: any;
 
-
-  // public products!: Product[];
-  // public editProduct: Product | undefined;
-  // public deleteProduct: Product | undefined;
-  // productService: any;
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
     ) { }
 
   ngOnInit() {
     this.getProducts();
-    // this.role = localStorage.getItem('role')
+
   }
 
-  // tslint:disable-next-line: typedef
   getRole(){
     return checkRole();
   }
 
-  public getProducts():void{
+  public getProducts(): void{
     this.productService.getProducts().subscribe(
       (response: Product[])=>{
         this.products = response;
@@ -51,7 +46,7 @@ export class GalleryComponent implements OnInit {
     )
   }
 
-  public onAddProduct(addForm: NgForm):void{
+  public onAddProduct(addForm: NgForm): void{
     document.getElementById('add-product-form')?.click();
     this.productService.addProduct(addForm.value).subscribe(
       (response: Product) => {
@@ -90,10 +85,10 @@ export class GalleryComponent implements OnInit {
     )
   }
 
-  public searchProducts(key:any): void {
+  public searchProducts(key: any): void {
     console.log(key);
     let keyString = '';
-    keyString +=key.target.value
+    keyString += key.target.value;
     const results: Product[] = [];
     for (const product of this.products){
       if(product.name.toLowerCase().indexOf(keyString.toLowerCase()) !== -1){
@@ -101,12 +96,12 @@ export class GalleryComponent implements OnInit {
       }
     }
     this.products = results;
-    if(results.length ===0 || !keyString){
+    if(results.length === 0 || !keyString){
       this.getProducts();
     }
   }
 
-  public editProductModal(product: Product):void{
+  public editProductModal(product: Product): void{
     this.editProduct = product;
   }
 
@@ -116,12 +111,23 @@ export class GalleryComponent implements OnInit {
 
   public productToString(product: Product){
     this.router.navigate(['product'],  { queryParams: {
-      id:product?.id,
-      name:product?.name,
-      price: product?.price,
-      count:product?.count,
-      img:product?.imgUrl,
-      description:product?.description
+      id: product?.id,
     } });
+  }
+
+  getUserId(){
+    return getId();
+  }
+
+  likeProduct(productId: number){
+    this.userService.likeProduct(productId, this.getUserId()).subscribe(
+      (response: User)=> {
+        console.log(response);
+        alert("Товар был добавлен в избранное")
+      },
+      (error:HttpErrorResponse)=>{
+        alert(error);
+      }
+    )
   }
 }
