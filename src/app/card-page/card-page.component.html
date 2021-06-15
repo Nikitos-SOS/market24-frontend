@@ -11,6 +11,7 @@
         <h3 class="price">
           От {{this.product!.price}} Р
         </h3>
+        <h5 class="rating">Оценка: {{this.product!.rating}}</h5>
         <br>
         <h6 class="count">
           В наличии:     {{this.product!.count}}
@@ -41,37 +42,50 @@
 
 
   </div>
-<!-- <div class="comments">
+<div class="comments">
+  <h4 class="comment_title">
+    Отзывы ({{this.comments.length}}):
+  </h4>
   <div class="comment" *ngFor="let comment of comments; index as i; first as isFirst">
+    <h5 class="user">Пользователь: {{comment.user.name}} {{comment.user.surname}}</h5>
+    <h6 class="rate"> Оценка: {{comment.rate}}</h6>
     <p class="comment_text">
       {{comment.text}}
     </p>
+    <button class="btn btn-danger" *ngIf="roleAdmin()" (click)="onDeleteComment(comment)"> Удалить</button>
   </div>
+
 </div>
-<div class="feedback">
+<div class="feedback comments" *ngIf="roleUser()">
   <h4 class="feedback_text">
     Оставить отзыв
-  </h4> -->
+  </h4>
   <!-- <textarea name="comment" id="" class="form-control"></textarea>
   <br>
   <button class="btn btn-success">Отправить</button> -->
-  <!-- <form #addForm="ngForm" (ngSubmit)="onAddComment(addForm)">
-    <div class="form-group">
-      <input type="number" ngModel name="productId" class="form-control" id="productId" value="{{this.product.id}}" >
-    </div>
+  <form #addForm="ngForm" (ngSubmit)="onAddComment(addForm)">
+
+    <input type="hidden" ngModel="{{this.product!.id}}" name="productID" class="form-control" id="productID">
+    <input type="hidden" ngModel="{{this.getUserId()}}" name="userID" class="form-control" id="userID" >
 
     <div class="form-group">
-      <input type="number" ngModel name="userId" class="form-control" id="userId" value="{{getUserId()}}">
+      <label for="rate">Оценка</label>
+      <input type="number" ngModel name="rate" class="form-control" id="rate" min=1 max=5 placeholder="От 1 до 5" style="width: 150px;">
     </div>
-
+    <div class="form-group">
+      <label for="text">Текст</label>
+      <!-- <input type="text" ngModel name="text" class="form-control" id="text" placeholder="Текст"> -->
+      <textarea class="form-control" type="text" ngModel name="text" id="text" placeholder="Оставте здесь свой комментарий" id="floatingTextarea2" style="height: 100px">
+      </textarea>
+    </div>
 
 
     <div class="modal-footer">
-      <button type="button" id="add-product-form" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+      <!-- <button type="button" id="add-product-form" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+      <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Отправить</button>
    </div>
   </form>
-</div> -->
+</div>
 </div>
 
 

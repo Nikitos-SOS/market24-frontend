@@ -26,3 +26,15 @@ export function getUsername(): string{
   }
   return '';
 }
+
+export function getId(): string{
+  let jwt = localStorage.getItem('token');
+  if(jwt != null && jwt != ''){
+    let jwtData = jwt.split('.')[1];
+    let decodedJwtJsonData = window.atob(jwtData);
+    let decodedJwtData = JSON.parse(decodedJwtJsonData);
+    console.log(decodedJwtData.id);
+    return decodedJwtData.id;
+  }
+  return '';
+}

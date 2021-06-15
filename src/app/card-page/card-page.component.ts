@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CommentService } from '../services/comment.service';
 import { ProductComment } from './../interfaces/comment'
+import { checkRole, getId } from '../functions/checkRole';
 
 
 @Component({
@@ -15,8 +16,10 @@ import { ProductComment } from './../interfaces/comment'
 })
 export class CardPageComponent implements OnInit {
   product!: Product;
+  productId!: number;
 
   comments: ProductComment[] = [];
+  deleteComment!: ProductComment;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,8 +32,9 @@ export class CardPageComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       // this.param1 = params['id'];
       // this.product.name = params['name'];
-      // this.id = params['id']
-      this.getProduct(params['id']);
+      this.productId = params['id']
+      this.getProduct(this.productId);
+      this.getComments(this.productId);
       // this.getComments();
   });
 
@@ -60,23 +64,53 @@ export class CardPageComponent implements OnInit {
     return check;
   }
 
-  // getComments(){
-  //   // let productId = this.id
-  //   this.commentService.getCommments(Number(this.product.id)).subscribe(
-  //     (response: ProductComment[]) => {
-  //       this.comments = response;
-  //       console.log(this.comments);
-  //     }
-  //   )
-  // }
+  getComments(productId: number){
+    // let productId = this.id
+    this.commentService.getCommments(Number(productId)).subscribe(
+      (response: ProductComment[]) => {
+        this.comments = response;
+        console.log(this.comments);
+      }
+    )
+  }
 
-  // public onAddComment(addForm:NgForm){
-  //   console.log(addForm.value)
-  // }
+  public onAddComment(addForm:NgForm){
+    console.log(addForm.value);
+    this.commentService.addComment(addForm.value).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.getComments(this.productId);
+        addForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error);
+      }
+    )
 
-  // public getUserId(){
+  }
 
-  //   return localStorage.getItem('userId')
-  // }
 
+
+  public getUserId(){
+    return getId();
+  }
+
+  public onDeleteComment(comment: ProductComment){
+    this.commentService.deleteComment(comment.id).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.getComments(this.productId);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error);
+      }
+    )
+  }
+  roleAdmin(){
+    return checkRole() === 'ROLE_ADMIN';
+  }
+
+  roleUser(){
+    return checkRole() === 'ROLE_USER';
+  }
 }

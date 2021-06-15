@@ -68,3 +68,37 @@
   transition: 0.3s;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
+
+
+.comments{
+  margin-top:50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(220,220,220,0.5);
+  padding:15px;
+}
+
+.comment{
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(180,180,180,0.5);
+  padding: 15px;
+  margin:10px auto;
+}
+
+.comment_text{
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(200,200,200,0.5);
+  padding: 5px;
+  /* height: 20px; */
+}
+
+.btn-primary{
+  background-color: #95e1d3;
+  color: black;
+  border: none;
+}
+
+.btn-primary:hover{
+  transition: 0.3s;
+  color: white;
+  background-color: #006a4e;
+}
