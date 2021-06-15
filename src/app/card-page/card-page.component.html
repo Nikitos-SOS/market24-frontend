@@ -1,23 +1,23 @@
 <div class="container">
   <div class="row ">
-    <img src="{{this.img}}" alt="" class="img rounded col-xl-5 col-md-5 col-sm-12">
+    <img src="{{this.product.imgUrl}}" alt="" class="img rounded col-xl-5 col-md-5 col-sm-12">
 
     <div class="content col-xl-5 col-md-5 col-sm-12">
       <h2 class="title">
-        {{this.name}}
+        {{this.product.name}}
       </h2>
       <h3 class="price">
-        Цена: От {{this.price}} рублей за шт
+        Цена: От {{this.product.price}} рублей за шт
       </h3>
       <h4 class="count">
-        В наличии: {{this.count}}
+        В наличии: {{this.product.count}}
       </h4>
       <h4 class="description">
         Описание:
       </h4>
       <p class="description">
 
-        {{this.description}}
+        {{this.product.description}}
       </p>
       <button class="btn btn-success">Заказать</button>
 
@@ -40,7 +40,7 @@
   <button class="btn btn-success">Отправить</button> -->
   <form #addForm="ngForm" (ngSubmit)="onAddComment(addForm)">
     <div class="form-group">
-      <input type="number" ngModel name="productId" class="form-control" id="productId" value="{{this.id}}" >
+      <input type="number" ngModel name="productId" class="form-control" id="productId" value="{{this.product.id}}" >
     </div>
 
     <div class="form-group">

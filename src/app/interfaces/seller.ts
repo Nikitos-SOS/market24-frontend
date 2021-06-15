@@ -6,5 +6,6 @@ export interface Seller{
   username: string;
   password: string;
   contactInfo: string;
-  products: Product[];
+  name: string;
+  description: string;
 }

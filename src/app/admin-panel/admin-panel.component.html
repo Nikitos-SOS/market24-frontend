@@ -48,10 +48,10 @@
         <tr>
           <th scope="col">id</th>
           <th scope="col">Username</th>
-          <!-- <th scope="col">Role</th> -->
+          <th scope="col">Name</th>
           <th scope="col">ИНН</th>
+          <th scope="col">Description</th>
           <th scope="col">Contact Info</th>
-          <th scope="col">Product count</th>
           <th scope="col">Control</th>
 
         </tr>
@@ -60,17 +60,26 @@
         <tr *ngFor="let seller of sellers; index as i; first as isFirst">
           <th scope="row">{{seller.id}}</th>
           <td>{{seller.username}}</td>
+          <td>{{seller.name}}</td>
           <td>{{seller.inn}}</td>
           <td>
-            <textarea name="contactInfo" rows=3 style="width: 100%;" >
-              {{seller.contactInfo}}
-            </textarea>
-            <!-- <div class="contactInfo_inner " style="max-width: 900px;">
-              {{seller.contactInfo}}
-            </div> -->
+            <div class="form-floating">
+              <textarea class="form-control" disabled placeholder="Leave a description here" id="floatingTextarea2" style="height: 100px">
+                {{seller.description}}
+              </textarea>
+              <label for="floatingTextarea2">Description</label>
+            </div>
 
           </td>
-          <td>{{seller.products.length}}</td>
+          <td>
+            <div class="form-floating">
+              <textarea class="form-control" disabled  placeholder="Leave a contact info here" id="floatingTextarea2" style="height: 100px">
+                {{seller.contactInfo}}
+              </textarea>
+              <label for="floatingTextarea2">Contact info</label>
+            </div>
+          </td>
+          <!-- <td>{{seller.products.length}}</td> -->
           <td>
               <button type="button" class="btn btn-sm btn-outline-secondary" (click)="editSellerModal(seller)" data-bs-toggle="modal" data-bs-target="#updateSellerModal" >Edit</button>
               <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteSellerModal(seller)" data-bs-toggle="modal" data-bs-target="#deleteSellerModal">Delete</button>
@@ -171,17 +180,29 @@
               <input type="hidden" ngModel="{{editSeller?.id}}" name="id" class="form-control" id="id">
               <input type="hidden" ngModel="{{editSeller?.password}}" name="password" class="form-control" id="password" >
               <!-- <input type="hidden" ngModel="{{editSeller?.products}}" name="products" class="form-control" id="products" > -->
-
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" ngModel="{{editSeller?.name}}" name="name" class="form-control" id="name" placeholder="Name">
+             </div>
               <div class="form-group">
                  <label for="inn">ИНН</label>
                  <input type="number" ngModel="{{editSeller?.inn}}" name="inn" class="form-control" id="inn" name="inn" placeholder="1234567890">
               </div>
               <div class="form-group">
+                <label for="description">Description</label>
+                <div class="form-floating">
+                  <textarea class="form-control" type="text" ngModel="{{editSeller?.description}}" name="description" id="description" placeholder="Leave a description here" id="floatingTextarea2" style="height: 100px">
+                  </textarea>
+                  <label for="floatingTextarea2">Description</label>
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="contactInfo">Контактная информация</label>
-                <!-- <input type="text" ngModel="{{editSeller?.contactInfo}}" name="email" class="form-control" id="email" name="email"  placeholder="help@gmail.com"> -->
-                <textarea type="text" ngModel="{{editSeller?.contactInfo}}" name="contactInfo" class="form-control" id="contactInfo" cols="30" raws="10" placeholder="Your contact info" required>
-
-                </textarea>
+                <div class="form-floating">
+                  <textarea class="form-control" type="text" ngModel="{{editSeller?.contactInfo}}" name="contactInfo" id="conactInfo" placeholder="Leave a contact info here" id="floatingTextarea2" style="height: 100px">
+                  </textarea>
+                  <label for="floatingTextarea2">Contact info</label>
+                </div>
               </div>
               <div class="modal-footer">
                  <button type="button" id="edit-product-form" data-bs-dismiss="modal" class="btn btn-secondary" >Закрыть</button>

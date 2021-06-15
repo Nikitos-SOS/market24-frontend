@@ -98,7 +98,7 @@ export class GalleryComponent implements OnInit {
     }
   }
 
-  public editProductModal(product: Product):void{
+  public editProductModal(product: Product): void{
     this.editProduct = product;
   }
 
@@ -109,11 +109,11 @@ export class GalleryComponent implements OnInit {
   public productToString(product: Product){
     this.router.navigate(['product'],  { queryParams: {
       id:product?.id,
-      name:product?.name,
-      price: product?.price,
-      count:product?.count,
-      img:product?.imgUrl,
-      description:product?.description
+      // name:product?.name,
+      // price: product?.price,
+      // count:product?.count,
+      // img:product?.imgUrl,
+      // description:product?.description
     } });
   }
 }

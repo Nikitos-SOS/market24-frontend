@@ -1,3 +1,4 @@
+import { HomeContentComponent } from './body/home-content/home-content.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -36,6 +37,7 @@ import { SellerPanelComponent } from './seller-panel/seller-panel.component';
   declarations: [
     AppComponent,
     HomeComponent,
+    HomeContentComponent,
     GalleryComponent,
     AboutUsComponent,
     NavComponent,

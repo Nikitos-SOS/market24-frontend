@@ -5,13 +5,30 @@
       <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Username" required>
    </div>
 
+   <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name">
+ </div>
+
   <div class="form-group">
     <label for="inn">ИНН</label>
     <input type="number" ngModel name="inn" class="form-control" id="inn" placeholder="1234567891011" required>
   </div>
   <div class="form-group">
+    <label for="description">Description</label>
+    <div class="form-floating">
+      <textarea class="form-control" type="text" ngModel name="description" id="description" placeholder="Leave a description here" id="floatingTextarea2" style="height: 100px">
+      </textarea>
+      <label for="floatingTextarea2">Description</label>
+    </div>
+  </div>
+  <div class="form-group">
     <label for="contactInfo">Контактная информация</label>
-    <input type="text" ngModel name="contactInfo" class="form-control" id="contactInfo" placeholder="Контактная информация" required>
+    <div class="form-floating">
+      <textarea class="form-control" type="text" ngModel name="contactInfo" id="conactInfo" placeholder="Leave a contact info here" id="floatingTextarea2" style="height: 100px">
+      </textarea>
+      <label for="floatingTextarea2">Contact info</label>
+    </div>
   </div>
   <div class="form-group">
     <label for="password">Пароль</label>
