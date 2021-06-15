@@ -37,7 +37,7 @@ import { SellerPanelComponent } from './seller-panel/seller-panel.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    HomeContentComponent,
+    // HomeContentComponent,
     GalleryComponent,
     AboutUsComponent,
     NavComponent,

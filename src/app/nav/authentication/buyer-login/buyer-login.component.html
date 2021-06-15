@@ -1,21 +1,22 @@
 
 <div class="container">
-  <h2 class="title">
+  <h3 class="title">
     Войти как Покупатель
-  </h2>
+  </h3>
   <form #loginForm='ngForm' (ngSubmit)="onSubmit(loginForm)">
     <div class="form-group">
-      <label for="userName">Username</label>
-      <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Username" required>
+      <label for="userName">Логин</label>
+      <input type="text" ngModel name="username" class="form-control" id="username" placeholder="Логин" required>
    </div>
   <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
+    <label for="password">Пароль</label>
+    <input type="password" ngModel name="password" class="form-control" id="password" placeholder="Пароль" required>
   </div>
 
-   <div class="modal-footer">
-      <button type="button" id="signing-form" class="btn btn-secondary" routerLink="getLastPage()" routerLinkActive="active">Close</button>
-      <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Sign up</button>
+   <div class="d-grid gap-1" style="padding-top:5px">
+    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary " >Войти</button>
+    <button type="button" id="signing-form" class="btn btn-outline-secondary" routerLink="getLastPage()" routerLinkActive="active">Закрыть</button>
+
    </div>
 
   </form>

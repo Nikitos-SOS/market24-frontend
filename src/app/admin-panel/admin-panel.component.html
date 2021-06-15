@@ -5,7 +5,7 @@
         {{user.username}} | Role | {{user.surname}} | {{user.name}} | {{user.phone}} | {{user.email}}
       </li>
     </ul> -->
-    <h2 class="users">Список Покупателей:</h2>
+    <h3 class="users">Список Покупателей:</h3>
     <table class="table">
       <thead>
         <tr>
@@ -42,7 +42,7 @@
   </div>
 
   <div class="seller_container">
-    <h2 class="users">Список Продавцов:</h2>
+    <h3 class="users">Список Продавцов:</h3>
     <table class="table">
       <thead>
         <tr>
@@ -64,19 +64,19 @@
           <td>{{seller.inn}}</td>
           <td>
             <div class="form-floating">
-              <textarea class="form-control" disabled placeholder="Leave a description here" id="floatingTextarea2" style="height: 100px">
+              <textarea class="form-control" disabled  id="floatingTextarea2" style="height: 100px">
                 {{seller.description}}
               </textarea>
-              <label for="floatingTextarea2">Description</label>
+
             </div>
 
           </td>
           <td>
             <div class="form-floating">
-              <textarea class="form-control" disabled  placeholder="Leave a contact info here" id="floatingTextarea2" style="height: 100px">
+              <textarea class="form-control" disabled  id="floatingTextarea2" style="height: 100px">
                 {{seller.contactInfo}}
               </textarea>
-              <label for="floatingTextarea2">Contact info</label>
+
             </div>
           </td>
           <!-- <td>{{seller.products.length}}</td> -->

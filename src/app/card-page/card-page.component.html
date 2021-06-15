@@ -1,30 +1,47 @@
 <div class="container">
   <div class="row ">
-    <img src="{{this.product.imgUrl}}" alt="" class="img rounded col-xl-5 col-md-5 col-sm-12">
-
+    <!-- <img src="{{this.product.imgUrl}}" alt="" class="img rounded col-xl-5 col-md-5 col-sm-12"> -->
+    <div class="img_container col-5" style="background-image: url('{{this.product?.imgUrl}}'); background-size: cover;"></div>
     <div class="content col-xl-5 col-md-5 col-sm-12">
-      <h2 class="title">
-        {{this.product.name}}
-      </h2>
-      <h3 class="price">
-        Цена: От {{this.product.price}} рублей за шт
-      </h3>
-      <h4 class="count">
-        В наличии: {{this.product.count}}
-      </h4>
-      <h4 class="description">
-        Описание:
-      </h4>
-      <p class="description">
+      <div class="content_inner">
+        <h3 class="title">
+          {{this.product!.name}}
+        </h3>
+        <br>
+        <h3 class="price">
+          От {{this.product!.price}} Р
+        </h3>
+        <br>
+        <h6 class="count">
+          В наличии:     {{this.product!.count}}
+        </h6>
 
-        {{this.product.description}}
+        <h6 class="description">
+          Описание:
+      </h6>
+      <p class="description_text" >
+        {{this.product!.description}}
       </p>
-      <button class="btn btn-success">Заказать</button>
+        <h6 class="city">
+          Город:
 
+        </h6>
+        {{this.product!.city}} | {{this.product!.region}}
+
+        <h6 class="seller">
+          Выложил:  </h6>
+          {{this.product!.seller!.name}}
+          <button class="btn btn_seller" data-bs-toggle="modal" data-bs-target="#sellerInfoModal">Подробнее</button>
+
+
+      </div>
+
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#orderModal">Заказать</button>
     </div>
 
+
   </div>
-<div class="comments">
+<!-- <div class="comments">
   <div class="comment" *ngFor="let comment of comments; index as i; first as isFirst">
     <p class="comment_text">
       {{comment.text}}
@@ -34,11 +51,11 @@
 <div class="feedback">
   <h4 class="feedback_text">
     Оставить отзыв
-  </h4>
+  </h4> -->
   <!-- <textarea name="comment" id="" class="form-control"></textarea>
   <br>
   <button class="btn btn-success">Отправить</button> -->
-  <form #addForm="ngForm" (ngSubmit)="onAddComment(addForm)">
+  <!-- <form #addForm="ngForm" (ngSubmit)="onAddComment(addForm)">
     <div class="form-group">
       <input type="number" ngModel name="productId" class="form-control" id="productId" value="{{this.product.id}}" >
     </div>
@@ -54,9 +71,50 @@
       <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
    </div>
   </form>
-</div>
+</div> -->
 </div>
 
+
+<!-- Seller info -->
+<div class="modal fade" id="sellerInfoModal" tabindex="-1" aria-labelledby="sellerInfoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sellerInfoModalLabel">Информация о продавце</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group list-group-flush">
+          <!-- <li class="list-group-item">Логин*: {{this.product.seller.username}}</li> -->
+          <li class="list-group-item">Название компании: {{this.product!.seller!.name}}</li>
+          <!-- <li class="list-group-item">ИНН*: {{seller.inn}}</li> -->
+          <li class="list-group-item" >Описание компании: {{this.product!.seller!.description}}</li>
+          <!-- <li class="list-group-item">Контактная информация: {{seller.contactInfo}}</li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Order info -->
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderModalLabel">Контактная информация</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="orderInfo" *ngIf="!this.logedIn()">
+          <h5>{{this.product.seller.contactInfo}}</h5>
+        </div>
+        <div class="loginInfo" *ngIf="this.logedIn()">
+          Вам необходимо войти в аккаунт
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

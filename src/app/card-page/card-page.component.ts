@@ -31,7 +31,7 @@ export class CardPageComponent implements OnInit {
       // this.product.name = params['name'];
       // this.id = params['id']
       this.getProduct(params['id']);
-      this.getComments();
+      // this.getComments();
   });
 
   }
@@ -51,23 +51,32 @@ export class CardPageComponent implements OnInit {
 
   }
 
-  getComments(){
-    // let productId = this.id
-    this.commentService.getCommments(Number(this.product.id)).subscribe(
-      (response: ProductComment[]) => {
-        this.comments = response;
-        console.log(this.comments);
-      }
-    )
+  logedIn(){
+    let check = false;
+    if( localStorage.getItem('token') === '' || localStorage.getItem('token') === null || localStorage.getItem('token') === undefined){
+      check = true;
+    }
+    console.log(check);
+    return check;
   }
 
-  public onAddComment(addForm:NgForm){
-    console.log(addForm.value)
-  }
+  // getComments(){
+  //   // let productId = this.id
+  //   this.commentService.getCommments(Number(this.product.id)).subscribe(
+  //     (response: ProductComment[]) => {
+  //       this.comments = response;
+  //       console.log(this.comments);
+  //     }
+  //   )
+  // }
 
-  public getUserId(){
+  // public onAddComment(addForm:NgForm){
+  //   console.log(addForm.value)
+  // }
 
-    return localStorage.getItem('userId')
-  }
+  // public getUserId(){
+
+  //   return localStorage.getItem('userId')
+  // }
 
 }
