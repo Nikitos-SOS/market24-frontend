@@ -57,6 +57,11 @@
                     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="deleteProductModal(product)" data-bs-toggle="modal" data-bs-target="#deleteProductModal">Delete</button>
 
                   </ng-container>
+
+                  <ng-container *ngSwitchCase = "'ROLE_USER'">
+                    <button class=" like_btn" style="background-image: url(../../../assets/imgs/Rectangle\ 120.png);" (click)="this.likeProduct(this.product!.id)">Добавить </button>
+                  </ng-container>
+
                   <!-- <ng-container *ngSwitchDefault>{{this.getRole()}}</ng-container> -->
 
                   </div>

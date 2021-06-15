@@ -100,4 +100,24 @@
 }
 .add_btn:hover{
   background-color: #006a4e;
+  color:white;
+  transition: 0.3s;
+}
+
+.like_btn{
+  background-color: #95e1d3;
+  width:   90px;
+  height: 50px;
+  border-radius: 14px;
+  font-size: 12px;
+  border: none;
+}
+
+.like_btn:hover{
+  /* background-color: #006a4e; */
+  /* background-image: none; */
+
+  /* color:white; */
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }

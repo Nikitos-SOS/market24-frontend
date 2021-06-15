@@ -1,3 +1,5 @@
+import { User } from "../interfaces/user";
+
 export function checkRole(): string | null{
   let jwt = localStorage.getItem('token');
   // alert(jwt);
@@ -27,7 +29,7 @@ export function getUsername(): string{
   return '';
 }
 
-export function getId(): string{
+export function getId(): number{
   let jwt = localStorage.getItem('token');
   if(jwt != null && jwt != ''){
     let jwtData = jwt.split('.')[1];
@@ -36,5 +38,6 @@ export function getId(): string{
     console.log(decodedJwtData.id);
     return decodedJwtData.id;
   }
-  return '';
+  return -1;
 }
+

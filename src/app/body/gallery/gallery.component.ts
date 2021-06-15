@@ -1,10 +1,12 @@
+import { UserService } from './../../services/user.service';
 import { Router } from '@angular/router';
 import { Product } from './../../interfaces/product';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse, JsonpClientBackend } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { checkRole } from '../../functions/checkRole';
+import { checkRole, getId } from '../../functions/checkRole';
+import { User } from 'src/app/interfaces/user';
 // import { Product } from './../../interfaces/product';
 
 @Component({
@@ -19,7 +21,8 @@ export class GalleryComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
     ) { }
 
   ngOnInit() {
@@ -108,12 +111,23 @@ export class GalleryComponent implements OnInit {
 
   public productToString(product: Product){
     this.router.navigate(['product'],  { queryParams: {
-      id:product?.id,
-      // name:product?.name,
-      // price: product?.price,
-      // count:product?.count,
-      // img:product?.imgUrl,
-      // description:product?.description
+      id: product?.id,
     } });
+  }
+
+  getUserId(){
+    return getId();
+  }
+
+  likeProduct(productId: number){
+    this.userService.likeProduct(productId, this.getUserId()).subscribe(
+      (response: User)=> {
+        console.log(response);
+        alert("Товар был добавлен в избранное")
+      },
+      (error:HttpErrorResponse)=>{
+        alert(error);
+      }
+    )
   }
 }

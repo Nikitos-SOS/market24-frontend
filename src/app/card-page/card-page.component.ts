@@ -1,3 +1,4 @@
+import { UserService } from './../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProductService } from 'src/app/services/product.service';
 import { NgForm } from '@angular/forms';
@@ -7,6 +8,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CommentService } from '../services/comment.service';
 import { ProductComment } from './../interfaces/comment'
 import { checkRole, getId } from '../functions/checkRole';
+import { User } from '../interfaces/user';
 
 
 @Component({
@@ -26,6 +28,7 @@ export class CardPageComponent implements OnInit {
     private router: Router,
     private commentService: CommentService,
     private productService: ProductService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -91,7 +94,7 @@ export class CardPageComponent implements OnInit {
 
 
 
-  public getUserId(){
+  public getUserId(): number {
     return getId();
   }
 
@@ -113,4 +116,19 @@ export class CardPageComponent implements OnInit {
   roleUser(){
     return checkRole() === 'ROLE_USER';
   }
+
+
+
+  likeProduct(productId: number){
+    this.userService.likeProduct(productId, this.getUserId()).subscribe(
+      (response: User)=> {
+        console.log(response);
+        alert("Товар был добавлен в избранное")
+      },
+      (error:HttpErrorResponse)=>{
+        alert(error);
+      }
+    )
+  }
+
 }

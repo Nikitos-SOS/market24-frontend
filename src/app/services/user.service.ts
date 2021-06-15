@@ -49,4 +49,12 @@ export class UserService {
     const options = {responseType: 'text' as 'json'};
     return this.http.put<void>(`${this.apiServerUrl}/repassword`, changePassword, options);
   }
+
+  public likeProduct(productId: number, userId: number): Observable<User>{
+    return this.http.get<User>(`${this.apiServerUrl}/user/like/${productId}:${userId}`);
+  }
+
+  public dislikeProduct(productId: number, userId: number): Observable<User>{
+    return this.http.delete<User>(`${this.apiServerUrl}/user/dislike/${productId}:${userId}`);
+  }
 }

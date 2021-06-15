@@ -37,7 +37,8 @@
 
       </div>
 
-      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#orderModal">Заказать</button>
+      <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#orderModal">Заказать</button>
+      <button class="btn-success" (click)="this.likeProduct(this.product!.id)">Добавить в избранное</button>
     </div>
 
 
@@ -58,7 +59,7 @@
 </div>
 <div class="feedback comments" *ngIf="roleUser()">
   <h4 class="feedback_text">
-    Оставить отзыв
+    Оставить отзыв:
   </h4>
   <!-- <textarea name="comment" id="" class="form-control"></textarea>
   <br>

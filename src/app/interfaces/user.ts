@@ -1,3 +1,5 @@
+import { Product } from './product';
+
 export interface User{
   id: number;
   username: string;
@@ -7,4 +9,5 @@ export interface User{
   phone: string;
   email: string;
   roles: {'id': number, 'name': string}[];
+  products: Product[],
 }

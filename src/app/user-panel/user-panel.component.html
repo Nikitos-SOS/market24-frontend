@@ -1,23 +1,59 @@
-<div class="user_info_container" *ngIf="roleUser()">
-  <div class="user_info col-lg-6 col-md-9 col-sm-12">
-    <h3 class="userInfoTitle">
-      Личная информация:
-    </h3>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Логин*: {{user.username}}</li>
-      <li class="list-group-item">Имя пользователя: {{user.name}}</li>
-      <li class="list-group-item">Фамилия пользователя: {{user.surname}}</li>
-      <li class="list-group-item">Номер телефона: {{user.phone}}</li>
-      <li class="list-group-item">Электронная почта: {{user.email}}</li>
-    </ul>
-    <div class="d-grid gap-1">
-      <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#updateUserModal" >Редактировать</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#changePasswordModal" >Изменить пароль</button>
+<div class="container row" *ngIf="roleUser()">
+  <div class="user_info_container col-lg-6 col-md-9 col-sm-12" >
+    <div class="user_info ">
+      <h3 class="userInfoTitle">
+        Личная информация:
+      </h3>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Логин*: {{user.username}}</li>
+        <li class="list-group-item">Имя пользователя: {{user.name}}</li>
+        <li class="list-group-item">Фамилия пользователя: {{user.surname}}</li>
+        <li class="list-group-item">Номер телефона: {{user.phone}}</li>
+        <li class="list-group-item">Электронная почта: {{user.email}}</li>
+      </ul>
+      <div class="d-grid gap-1">
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#updateUserModal" >Редактировать</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#changePasswordModal" >Изменить пароль</button>
+
+      </div>
 
     </div>
+  </div>
 
+  <div class="liked_products user_info col-lg-6 col-md-9 col-sm-12">
+    <h3 class="table_title">
+      Избранное:
+    </h3>
+    <table class="table">
+      <thead>
+        <tr>
+
+          <th scope="col">Название</th>
+          <th scope="col">Цена</th>
+          <th scope="col">Ссылка</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of this.user.products; index as i; first as isFirst">
+
+
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td><button class="btn btn-sm btn-light" (click) ="productToString(product)">Подробнее</button></td>
+          <td>
+              <button type="button" class="btn btn-sm btn-outline-danger" (click)="dislikeProduct(product)" >Удалить</button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="liked_product" *ngFor="let product of this.user.products; index as i; first as isFirst">
+
+    </div>
   </div>
 </div>
+
 
 <!-- Edit User Modal -->
 <div class="modal fade" id="updateUserModal" tabindex="-1" role="dialog" aria-labelledby="userEditModalLabel" aria-hidden="true">
